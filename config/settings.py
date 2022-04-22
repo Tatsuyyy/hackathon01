@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'sample_api.apps.SampleApiConfig',
+    'api.apps.ApiConfig',
     'drf_spectacular'
 ]
 
