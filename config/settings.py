@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'sample_api.apps.SampleApiConfig',
     'api.apps.ApiConfig',
-    'drf_spectacular'
+    'drf_spectacular',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -155,3 +157,10 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# CORS
+CORS_ALLOW_ALLORIGINS = False
+CORS_ALLOW_ORIGINS = [
+    'http://localhost:3000'
+    'http://127.0.0.1:3000'
+]
