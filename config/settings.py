@@ -159,8 +159,8 @@ DATABASES['default'].update(db_from_env)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS
-CORS_ALLOW_ALLORIGINS = False
-CORS_ALLOW_ORIGINS = [
-    'http://localhost:3000'
-    'http://127.0.0.1:3000'
-]
+CORS_ALLOW_ALLORIGINS = True
+# CORS_ALLOW_ORIGINS = [
+#     'http://localhost:3000'
+#     'http://127.0.0.1:3000'
+# ]
