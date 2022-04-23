@@ -9,5 +9,5 @@ router.register('teachers', TeacherViewSet)
 
 app_name = 'api'
 urlpatterns = [
-    path('/', include(router.urls))
+    path('', include(router.urls))
 ]
