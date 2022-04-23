@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -159,8 +159,7 @@ DATABASES['default'].update(db_from_env)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS
-CORS_ALLOW_ALLORIGINS = True
-# CORS_ALLOW_ORIGINS = [
-#     'http://localhost:3000'
-#     'http://127.0.0.1:3000'
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',  # ここに追加
 # ]
