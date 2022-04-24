@@ -10,11 +10,6 @@ class Arrangements(models.Model):
     class Meta:
         db_table = 'arrangements'
         unique_together = (('task', 'weekday'),)
-        constraints = [
-            models.UniqueConstraint(
-                fields=['task', 'weekday'], name='unique')
-        ]
-
 
 class Students(models.Model):
     name = models.CharField(max_length=50)
