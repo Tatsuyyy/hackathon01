@@ -1,14 +1,14 @@
 from django.db import models
 
-
 class Arrangements(models.Model):
-    task = models.OneToOneField('Tasks', models.DO_NOTHING, primary_key=True)
+    task = models.ForeignKey('Tasks', models.DO_NOTHING)
     weekday = models.ForeignKey('Weekdays', models.DO_NOTHING)
     required_per_day = models.SmallIntegerField(blank=True, null=True)
     done_per_day = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'arrangements'
+
 
 class Students(models.Model):
     name = models.CharField(max_length=50)
