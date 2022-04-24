@@ -6,21 +6,38 @@ from api.serializers import TaskSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    """tasksモデルのCRUD用クラス"""
+    """tasksモデルのCRUD用クラス        
+    """
     
     queryset = Tasks.objects.all()
     serializer_class = TaskSerializer
     
     def create(self, request, *args, **kwargs):
+        """
+        dayで曜日を指定することで、その曜日で分割も可能。  
+        その場合はパラメータに追加で  
+        {  
+            'days' :[1,2,3,4]  
+        }  
+        のように渡す  
+        1:月曜 ~ 7:日曜
+"""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        self.insert_task(serializer.data)
+        if 'days' in request.data:
+            days = request.data['days']
+        else:
+            days = self.get_days()
+        self.insert_task(serializer.data, days)
+        
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         
         
-    def insert_task(self, data):
-        """送信されたtaskを保存し、6等分してArrangementsに保存"""
+    def insert_task(self, data, days):
+        """
+        送信されたtaskを保存し、6等分してArrangementsに保存
+        """
         
         student_obj = get_object_or_404(Students, pk=data['student'])
         task_obj = Tasks(
@@ -31,7 +48,6 @@ class TaskViewSet(viewsets.ModelViewSet):
             student=student_obj,
             )
         task_obj.save()
-        days = self.get_days()
         self.split_task(days, task_obj)
         
         
