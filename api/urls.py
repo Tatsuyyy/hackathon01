@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from api.views import TaskViewSet, StudentViewSet, TeacherViewSet, StudentTaskView, WeekTaskView
+from api.views import TaskViewSet, StudentViewSet, TeacherViewSet, StudentTaskView, WeekTaskView, ArrangementsUpdateView
 
 router = routers.SimpleRouter()
 router.register('tasks', TaskViewSet)
@@ -11,5 +11,6 @@ app_name = 'api'
 urlpatterns = [
     path('', include(router.urls)),
     path('tasks/filter/student/<student_id>/', StudentTaskView.as_view()),
-    path('tasks/filter/week/<student_id>/', WeekTaskView.as_view())
+    path('tasks/filter/week/<student_id>/', WeekTaskView.as_view()),
+    path('arrangements/update/done/<task_id>/', ArrangementsUpdateView.as_view()),
 ]
