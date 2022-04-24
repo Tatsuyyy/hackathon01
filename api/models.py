@@ -9,7 +9,6 @@ class Arrangements(models.Model):
 
     class Meta:
         db_table = 'arrangements'
-        unique_together = (('task', 'weekday'),)
 
 class Students(models.Model):
     name = models.CharField(max_length=50)
