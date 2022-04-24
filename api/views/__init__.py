@@ -4,3 +4,4 @@ from .teacher_view_set import TeacherViewSet
 from .stundet_task_view import StudentTaskView
 from .week_task_view import WeekTaskView
 from .arrangements_update_view import ArrangementsUpdateView
+from .arrangements_update_today_view import ArrangementsUpdateTodayView
