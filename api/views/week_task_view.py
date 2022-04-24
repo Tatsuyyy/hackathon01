@@ -19,10 +19,10 @@ class WeekTaskView(views.APIView):
             arrangements = Arrangements.objects.filter(task=task)
             self.make_response(arrangements)
         
-        pprint.pprint(self.res)
         return Response(self.res, status.HTTP_200_OK)
 
     def make_response(self, arrangements):
         for item in arrangements:
             serializer = ArrangementsSerializer(item)
+            print(serializer.data)
             self.res[item.weekday.name].append(serializer.data)    
